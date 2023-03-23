@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <script>
+      function calculateRoot() {
+        // Obtenha os valores de entrada do usuário
+        let x0 = parseFloat(document.getElementById("x0").value);
+        let maxIter = parseInt(document.getElementById("maxIter").value);
+        let epsilon = parseFloat(document.getElementById("epsilon").value);
+
+        // Defina a sua função f(x)
+        function f(x) {
+          return x ** 2 - 2;
+        }
+
+        // Defina a sua função g(x)
+        function g(x) {
+          return x - f(x) / 3;
+        }
+
+        // Inicialize o número de iterações e o erro
+        let nIter = 0;
+        let error = 1.0;
+
+        // Faça o loop até que o erro seja menor que a precisão desejada ou até que o número máximo de iterações seja alcançado
+        while (error > epsilon && nIter < maxIter) {
+          // Calcule o próximo ponto usando a função g(x)
+          let x1 = g(x0);
+
+          // Calcule o erro
+          error = Math.abs(x1 - x0);
+
+          // Atualize o número de iterações e o ponto anterior
+          nIter += 1;
+          x0 = x1;
+        }
+
+        // Verifique se a raiz foi encontrada com sucesso ou se o número máximo de iterações foi alcançado
+        let result = "";
+        if (nIter === maxIter) {
+          result =
+            "Não foi possível encontrar uma raiz com precisão suficiente.";
+        } else {
+          result =
+            "A raiz da função f(x) é " +
+            x0.toFixed(6) +
+            " após " +
+            nIter +
+            " iterações.";
+        }
+
+        // Exiba o resultado na tela
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Calcular Raiz da Função f(x)</h3>
+    <form>
+      x0: <input type="text" id="x0" /><br /><br />
+      max_iter: <input type="text" id="maxIter" /><br /><br />
+      epsilon: <input type="text" id="epsilon" /><br /><br />
+    </form>
+    <button onclick="calculateRoot();">Calcular Raiz</button><br /><br />
+    <div id="result"></div>
+  </body>
+</html>
