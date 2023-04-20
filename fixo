@@ -9,12 +9,12 @@
 
         // Defina a sua função f(x)
         function f(x) {
-          return x ** 2 - 2;
+          return X ** 3 - 9*x + 5;
         }
 
         // Defina a sua função g(x)
         function g(x) {
-          return x - f(x) / 3;
+          return (x ** 3 + 5)/9;
         }
 
         // Inicialize o número de iterações e o erro
